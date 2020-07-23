@@ -17,8 +17,23 @@ y=dataset.iloc[:,3].values
 imputer=SimpleImputer(missing_values=np.nan,strategy="mean")
 imputer=imputer.fit(x[:,1:3])
 x[:,1:3]=imputer.transform(x[:,1:3])
-<<<<<<< HEAD
- 
-=======
-#prueba de git 
->>>>>>> origin/master
+#datos categoricos 
+from sklearn import preprocessing
+label_encoder_x=preprocessing.LabelEncoder()
+x[:,0]=label_encoder_x.fit_transform(x[:,0])
+y=label_encoder_x.fit_transform(y)
+"""funciona pero no es la mejor forma pero se deaja
+como muestra de su funcionamen se debe combertir a bar dummyes"""
+#bariables dummy
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+ct= ColumnTransformer(
+        [("one_hot_encoder",OneHotEncoder(categories="auto"),[0])],
+        remainder="passthrough"
+        )
+x=np.array(ct.fit_transform(x),dtype=np.float)
+
+#dividir data set in trainin y test
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
+
