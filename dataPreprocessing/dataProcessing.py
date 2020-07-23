@@ -17,4 +17,4 @@ y=dataset.iloc[:,3].values
 imputer=SimpleImputer(missing_values=np.nan,strategy="mean")
 imputer=imputer.fit(x[:,1:3])
 x[:,1:3]=imputer.transform(x[:,1:3])
-
+#prueba de git 
