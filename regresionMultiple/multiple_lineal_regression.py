@@ -7,9 +7,7 @@ y=dataset.iloc[:,4].values
 #manejo de datos categoricos(var-dummy) sin usar labelEncoder
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
-ct=ColumnTransformer([("one_hot_encoder",OneHotEncoder(categories="auto"),[3])],
-                     remainder="passthrough"
-                     )
+ct=ColumnTransformer([("one_hot_encoder",OneHotEncoder(categories="auto"),[3])],remainder="passthrough")
 x=np.array(ct.fit_transform(x),dtype=np.float)
 #eliminamos la primera var dummy
 x=x[:,1:]
